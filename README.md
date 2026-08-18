@@ -24,3 +24,7 @@ Public key encryption dynamic key, supports files and folders.
 Additional image embedding data operation with error correction code.
 
 Support customized file icons and suffixes, note that suffixes participate in hash verification, and encryption and decryption configurations are not compatible
+
+界面依赖系统字体 *Pixel_Font.ttf*
+
+Interface dependent system font * Pixel_font.ttf*
