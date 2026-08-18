@@ -5,7 +5,7 @@ windows开发环境，其余环境适配度未知，依赖的模块在主页中�
 
 公钥加密动态密钥，支持文件和文件夹。
 
-- 加密：X25519Cipher, AesGcmCipher，
+- 加密：X25519Cipher, AesGcmCipher
 - 压缩：Bz2Compressor
 - 哈希校验：HmacSha256Hash
   
