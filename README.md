@@ -27,4 +27,4 @@ Support customized file icons and suffixes, note that suffixes participate in ha
 
 界面依赖系统字体 *Pixel_Font.ttf*
 
-Interface dependent system font * Pixel_font.ttf*
+Interface dependent system font *Pixel_font.ttf*
