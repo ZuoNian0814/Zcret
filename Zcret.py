@@ -77,9 +77,9 @@ def get_img_size(img: Image.Image, fmt: str = "PNG") -> int:
     buf = io.BytesIO()
     img.save(buf, format=fmt)
     return len(buf.getvalue())
-def get_config():
-    if os.path.isfile("config.json"):
-        with open("config.json", mode="r", encoding="utf-8") as f:
+def get_config(path_name="config.json"):
+    if os.path.isfile(path_name):
+        with open(path_name, mode="r", encoding="utf-8") as f:
             encryption_config = json.loads(f.read())
     else:
         encryption_config = {
@@ -90,12 +90,12 @@ def get_config():
             "BlockSize": 1024**2*10,
             "PublicKey": "public_0.bin.zorn"
         }
-        with open("config.json", mode="w", encoding="utf-8") as f:
+        with open(path_name, mode="w", encoding="utf-8") as f:
             f.write(json.dumps(encryption_config, indent=4, ensure_ascii=False))
     return encryption_config
-def save_config():
+def save_config(path_name="config.json"):
     global encryption_config
-    with open("config.json", mode="w", encoding="utf-8") as f:
+    with open(path_name, mode="w", encoding="utf-8") as f:
         f.write(json.dumps(encryption_config, indent=4, ensure_ascii=False))
 def get_public_keys():
     if os.path.isfile("public_keys.json"):
@@ -110,9 +110,9 @@ def save_public_keys():
     global public_keys
     with open("public_keys.json", mode="w", encoding="utf-8") as f:
         f.write(json.dumps(public_keys, indent=4, ensure_ascii=False))
-def get_Instructions_config():
-    if os.path.isfile("instructions_config.json"):
-        with open("instructions_config.json", mode="r", encoding="utf-8") as f:
+def get_Instructions_config(path_name="zcret_instructions_config.json"):
+    if os.path.isfile(path_name):
+        with open(path_name, mode="r", encoding="utf-8") as f:
             Instructions_config = json.loads(f.read())
     else:
         Instructions_config = [
@@ -166,12 +166,12 @@ def get_Instructions_config():
             ["(0/1)\n", "Emphasize"],
             ["是否对原始数据进行压缩，若加密时开启解密时也必须开启.\n", "Paragraph"]
         ]
-        with open("instructions_config.json", mode="w", encoding="utf-8") as f:
+        with open(path_name, mode="w", encoding="utf-8") as f:
             f.write(json.dumps(Instructions_config, indent=4, ensure_ascii=False))
     return Instructions_config
-def get_registration_config():
-    if os.path.isfile("registration_config.json"):
-        with open("registration_config.json", mode="r", encoding="utf-8") as f:
+def get_registration_config(path_name="registration_config.json"):
+    if os.path.isfile(path_name):
+        with open(path_name, mode="r", encoding="utf-8") as f:
             registration_config = json.loads(f.read())
     else:
         registration_config = {
@@ -188,7 +188,7 @@ def get_registration_config():
                 "icon": f"{script_dir}\\icons\\zornf.ico"
             }
         }
-        with open("registration_config.json", mode="w", encoding="utf-8") as f:
+        with open(path_name, mode="w", encoding="utf-8") as f:
             f.write(json.dumps(registration_config, indent=4, ensure_ascii=False))
     return registration_config
 
@@ -629,7 +629,6 @@ class Win:
             except Exception as e:
                 self.win.light_breath_init()
                 ui.MessageBox("Error", f"Password Error or: {e}", mode="error")
-
         def load_key(e):
             file_path = filedialog.askopenfilename(
                 title="请选择私钥文件",
@@ -1164,7 +1163,7 @@ class Win:
         tk.Frame(page, width=5, height=360, bg=ui.col_dict["bg"]).place(x=192, y=0)
 
         ui.Label(page, text="> Instructions", font_size=10).place(x=202, y=5)
-        self.Instructions_t = ui.Text(page, width=28, height=11,
+        self.Instructions_t = ui.Text(page, width=28, height=11, wrap=tk.WORD,
               tag_config=[
                   {"tagName": "Title", "font": ("Fusion Pixel 12px Mono zh_hans", 12, "bold"), "foreground": ui.col_dict['text']},
                   {"tagName": "Paragraph", "font": ("Fusion Pixel 12px Mono zh_hans", 8), "foreground": ui.col_dict['text']},
